@@ -90,10 +90,6 @@ setSelectedDate(null);
       });
   };
 
-  const handleCancel = () => {
-    // Call the parent component's callback function to handle cancellation
-    onCancel();
-  };
 
   return (
     <div className="container mx-auto mt-8">

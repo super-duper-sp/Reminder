@@ -28,9 +28,7 @@ const ModifyReminder = () => {
     setSelectedSubject(e.target.value);
   };
 
-  const handleReminderChange = (e) => {
-    setSelectedReminder(e.target.value);
-  };
+ 
 
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value);
@@ -115,10 +113,6 @@ const ModifyReminder = () => {
   };
   
 
-  const handleCancel = () => {
-    // Call the parent component's callback function to handle cancellation
-   
-  };
 
   return (
     <div className="container mx-auto mt-8">

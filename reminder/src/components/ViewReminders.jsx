@@ -6,20 +6,32 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+
 const ViewReminders = ({ subjects, onLogout }) => {
   const [remindersData, setReminders] = useState([]);
   const [selectedReminder, setSelectedReminder] = useState('');
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     // Fetch reminders when the component mounts
     const fetchReminders = async () => {
       try {
+        // Start loading
+        setLoading(true);
+
         const response = await axios.get('https://reminder--api.vercel.app/api/reminder/viewReminder');
         setReminders(response.data);
+
+        // Stop loading after successful fetch
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching reminders:', error);
         // Handle errors as needed, e.g., display an error message to the user
+
+        // Stop loading on error
+        setLoading(false);
         setReminders([]);
       }
     };
@@ -119,10 +131,9 @@ const ViewReminders = ({ subjects, onLogout }) => {
 
   };
 
-  const handleLogout = () => {
-    // Call the parent component's callback function to handle logout
-    onLogout();
-  };
+
+
+
   
   return (
     <div className="container mx-auto mt-8">
@@ -133,12 +144,21 @@ const ViewReminders = ({ subjects, onLogout }) => {
           <tr>
             <th className="border border-gray-300">Reminder Name</th>
             <th className="border border-gray-300">Reminder Subject</th>
-            {/* Add more header cells based on your reminder structure */}
+            <th className="border border-gray-300">Reminder Description</th>
+            <th className="border border-gray-300">Reminder Email</th>
+            <th className="border border-gray-300">Reminder Contact</th>
+            <th className="border border-gray-300">Reminder Sms No.</th>
+            <th className="border border-gray-300">Reminder Status </th>
+            <th className="border border-gray-300">Recurr </th>
           </tr>
         </thead>
 
         <tbody>
-          {remindersData.map((reminder) => (
+
+        {loading ? (
+        <p>Loading...</p>
+      ) : (
+          remindersData.map((reminder) => (
             <tr key={reminder._id}>
             <td className="border border-gray-300">{reminder.date}</td>
             <td className="border border-gray-300">{reminder.subject}</td>
@@ -158,7 +178,12 @@ const ViewReminders = ({ subjects, onLogout }) => {
               />
             </td>
           </tr>
-          ))}
+          )))}
+
+      
+
+
+
         </tbody>
       </table>
 
@@ -215,13 +240,11 @@ const ViewReminders = ({ subjects, onLogout }) => {
         </button>
 
         {/* Back button */}
-        <button
-          type="button"
-          onClick={handleLogout}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-4 mx-2"
-          >
-          Logout
-        </button>
+        <Link to="/LogoutMessage">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-4 mx-2">
+            Log Out
+          </button>
+        </Link>
       </div>
     </div>
   );

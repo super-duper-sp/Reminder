@@ -1,11 +1,12 @@
 // src/components/LogoutMessage.js
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const LogoutMessage = ({ onCancel }) => {
-  const handleCancel = () => {
-    // Call the parent component's callback function to handle cancellation
-    onCancel();
-  };
+  // const handleCancel = () => {
+  //   // Call the parent component's callback function to handle cancellation
+  //   onCancel();
+  // };
 
   return (
     <div className="container mx-auto mt-8 text-center">
