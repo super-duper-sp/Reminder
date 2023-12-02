@@ -17,7 +17,7 @@ const SetReminder = ({ onCancel }) => {
   const [email, setEmail] = useState('');
   const [contactNo, setContactNo] = useState('');
   const [smsNo, setSmsNo] = useState('');
-  const [recurDays, setRecurDays] = useState([]);
+  const [recurrence, setRecurDays] = useState([]);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -47,11 +47,15 @@ const SetReminder = ({ onCancel }) => {
 
 
   const handleRecurDaysChange = (day) => {
-    if (recurDays.includes(day)) {
-      setRecurDays(recurDays.filter((d) => d !== day));
-    } else {
-      setRecurDays([...recurDays, day]);
-    }
+   
+    setRecurDays((recurrence) => {
+      if (recurrence.includes(day)) {
+        return recurrence.filter((d) => d !== day);
+      } else {
+        return [...recurrence, day];
+      }
+    });
+  
   };
 
   const handleSetReminder = () => {
@@ -62,7 +66,7 @@ const SetReminder = ({ onCancel }) => {
       email,
       contactNo,
       smsNo,
-      recurDays,
+      recurrence,
     };
   
     // Assuming your API endpoint is http://example.com/api/reminders
@@ -193,7 +197,7 @@ setSelectedDate(null);
             <input
               type="checkbox"
               id="7Days"
-              checked={recurDays.includes('7Days')}
+              checked={recurrence.includes('7Days')}
               onChange={() => handleRecurDaysChange('7Days')}
               className="mr-1"
             />
@@ -204,7 +208,7 @@ setSelectedDate(null);
             <input
               type="checkbox"
               id="5Days"
-              checked={recurDays.includes('5Days')}
+              checked={recurrence.includes('5Days')}
               onChange={() => handleRecurDaysChange('5Days')}
               className="mr-1"
             />
@@ -215,7 +219,7 @@ setSelectedDate(null);
             <input
               type="checkbox"
               id="3Days"
-              checked={recurDays.includes('3Days')}
+              checked={recurrence.includes('3Days')}
               onChange={() => handleRecurDaysChange('3Days')}
               className="mr-1"
             />
@@ -226,7 +230,7 @@ setSelectedDate(null);
             <input
               type="checkbox"
               id="2Days"
-              checked={recurDays.includes('2Days')}
+              checked={recurrence.includes('2Days')}
               onChange={() => handleRecurDaysChange('2Days')}
             />
             <label htmlFor="2Days">2 Days</label>
