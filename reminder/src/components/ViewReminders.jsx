@@ -2,8 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -16,7 +15,7 @@ const ViewReminders = ({ subjects, onLogout }) => {
     // Fetch reminders when the component mounts
     const fetchReminders = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/reminder/viewReminder');
+        const response = await axios.get('https://reminder--api.vercel.app/api/reminder/viewReminder');
         setReminders(response.data);
       } catch (error) {
         console.error('Error fetching reminders:', error);
@@ -46,7 +45,7 @@ const ViewReminders = ({ subjects, onLogout }) => {
   
     try {
       // Send a request to your backend to delete the selected reminder
-      const response = await axios.delete(`http://localhost:8000/api/reminder/${selectedReminder}`);
+      const response = await axios.delete(`https://reminder--api.vercel.app/api/reminder/${selectedReminder}`);
   
       if (response.data.message === 'Deleted successfully') {
         // Perform any additional actions after successful deletion
@@ -78,12 +77,12 @@ const ViewReminders = ({ subjects, onLogout }) => {
     try {
       if (selectedReminder) {
         // Make an API call to update the status to "Active"
-        await axios.put(`http://localhost:8000/api/reminder/${selectedReminder}`, {
+        await axios.put(`https://reminder--api.vercel.app/api/reminder/${selectedReminder}`, {
           status: 'Active',
         });
   
         // Fetch updated reminders after the status change
-        const response = await axios.get('http://localhost:8000/api/reminder/viewReminder');
+        const response = await axios.get('https://reminder--api.vercel.app/api/reminder/viewReminder');
         setReminders(response.data);
   
         // Optionally, show a success message to the user
@@ -101,12 +100,12 @@ const ViewReminders = ({ subjects, onLogout }) => {
     try {
       if (selectedReminder) {
         // Make an API call to update the status to "Active"
-        await axios.put(`http://localhost:8000/api/reminder/${selectedReminder}`, {
+        await axios.put(`https://reminder--api.vercel.app/api/reminder/${selectedReminder}`, {
           status: 'Inactive',
         });
   
         // Fetch updated reminders after the status change
-        const response = await axios.get('http://localhost:8000/api/reminder/viewReminder');
+        const response = await axios.get('https://reminder--api.vercel.app/api/reminder/viewReminder');
         setReminders(response.data);
   
         // Optionally, show a success message to the user

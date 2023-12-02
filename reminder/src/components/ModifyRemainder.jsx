@@ -61,7 +61,7 @@ const ModifyReminder = () => {
     // Fetch existing data when the component mounts
     const fetchExistingData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/reminder/${id}`);
+        const response = await axios.get(`https://reminder--api.vercel.app/api/reminder/${id}`);
         const data = response.data.reminder; // Access the 'reminder' property
         setExistingData(data);
   
@@ -99,7 +99,7 @@ const ModifyReminder = () => {
       };
   
       // Make an API call to update the reminder
-      await axios.put(`http://localhost:8000/api/reminder/${id}`, updatedData);
+      await axios.put(`https://reminder--api.vercel.app/api/reminder/${id}`, updatedData);
   
       // Show an alert on successful modification
       window.alert('Reminder modified successfully');

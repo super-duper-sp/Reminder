@@ -66,7 +66,7 @@ const SetReminder = ({ onCancel }) => {
     };
   
     // Assuming your API endpoint is http://example.com/api/reminders
-    const apiUrl = 'http://localhost:8000/api/reminder/setReminder';
+    const apiUrl = 'https://reminder--api.vercel.app/api/reminder/setReminder';
   
     console.log(setReminder);
     axios.post(apiUrl, setReminder)
