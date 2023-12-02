@@ -150,6 +150,7 @@ const ViewReminders = ({ subjects, onLogout }) => {
             <th className="border border-gray-300">Reminder Sms No.</th>
             <th className="border border-gray-300">Reminder Status </th>
             <th className="border border-gray-300">Recurr </th>
+            <th className="border border-gray-300">Checkbox </th>
           </tr>
         </thead>
 
